@@ -1,0 +1,42 @@
+{
+	"manifest_version": 2,
+
+	"name": "Chrome Extension Test",
+	"description": "Getting Started Example!",
+	"version": "0.0.5",
+
+	"icons": {
+		"16": "icons/icon_16.png",
+		"48": "icons/icon_48.png"
+	},
+
+	"browser_action": {
+		"default_icon": {
+			  "16": "icons/icon_16.png",
+			  "48": "icons/icon_48.png"
+		}
+	},
+
+	"permissions": [
+		"activeTab",
+		"https://ajax.googleapis.com/",
+		"storage",
+		"tabs",
+		"cookies",
+		"http://*/",
+		"https://*/"
+	],
+	
+	"content_scripts": [
+		{
+		  "matches": ["http://*/*", "https://*/*", "file://*/*"],
+		  "js": ["js/content.js"]
+		}
+	],
+	"background": {
+		"scripts": [
+			"js/background.js"
+		],
+		"persistent": true
+	}
+}
