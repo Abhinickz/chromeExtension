@@ -9,21 +9,33 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	});
 });
 
-// function renderStatus(statusText) {
-	// document.getElementById('status').textContent = statusText;
-// }
+chrome.commands.onCommand.addListener(function( command ) {
+	console.log('onCommand event received for message: '+ command );
+	var queryInfo = {
+		active: true,
+		currentWindow: true
+	};
+	tab = chrome.tabs.query( queryInfo, function( tabs ) {
+		var tab = tabs[0];
+		console.log('Tab Information: '+ tab );
+		console.dir( tab );
+		return tab;
+	});
+	execute_content_js(tab);
+});
 
 chrome.browserAction.onClicked.addListener( function( tab ) { 
 	// hideImage();
 	console.dir( tab );
 	console.log( 'onClicked:'+ tab.url );
-	chrome.tabs.executeScript(tab.id, { file: "js/content.js" })
-	
+	execute_content_js (tab.id);
 });
 
+function execute_content_js(tab_id){
+	chrome.tabs.executeScript(tab_id, { file: "js/content.js" });
+}
+
 function getCurrentTabUrl( callback ) {
-	// Query filter to be passed to chrome.tabs.query - see
-	// https://developer.chrome.com/extensions/tabs#method-query
 	var queryInfo = {
 		active: true,
 		currentWindow: true

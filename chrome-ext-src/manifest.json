@@ -3,7 +3,7 @@
 
 	"name": "Chrome Extension Test",
 	"description": "Getting Started Example!",
-	"version": "0.0.5",
+	"version": "0.0.6",
 
 	"icons": {
 		"16": "icons/icon_16.png",
@@ -26,6 +26,19 @@
 		"http://*/",
 		"https://*/"
 	],
+	
+	"commands": {
+		"hideImage": {
+			"suggested_key": { "default": "Ctrl+Shift+H" },
+			"description": "Send a 'hideImage' event to the extension"
+		},		
+		"_execute_browser_action": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+H",
+				"mac": "MacCtrl+Shift+H"
+			}
+		}
+	},
 	
 	"content_scripts": [
 		{
